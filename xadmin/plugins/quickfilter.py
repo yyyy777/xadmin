@@ -51,6 +51,8 @@ class QuickFilterPlugin(BaseAdminPlugin):
 
         # Last term in lookup is a query term (__exact, __startswith etc)
         # This term can be ignored.
+        # QUERY_TERMS = ('exact', 'iexact', 'contains', 'icontains', 'gt', 'gte', 'lt', 'lte', 'startswith', 'istartswith', 'endswith',
+        #                'iendswith', 'range', 'year', 'month', 'day', 'week_day', 'isnull', 'search', 'regex', 'iregex')
         if len(parts) > 1 and parts[-1] in QUERY_TERMS:
             parts.pop()
 

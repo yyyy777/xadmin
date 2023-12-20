@@ -292,7 +292,7 @@ class ModelFormAdminView(ModelAdminView):
             self.save_models()
             self.save_related()
             response = self.post_response()
-            cls_str = str if six.PY3 else basestring
+            cls_str = str
             if isinstance(response, cls_str):
                 return HttpResponseRedirect(response)
             else:

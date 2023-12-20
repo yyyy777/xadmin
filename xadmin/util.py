@@ -45,7 +45,7 @@ def xstatic(*tags):
     fs = []
     lang = get_language()
 
-    cls_str = str if six.PY3 else basestring
+    cls_str = str
     for tag in tags:
         try:
             for p in tag.split('.'):
@@ -130,7 +130,7 @@ def quote(s):
     quoting is slightly different so that it doesn't get automatically
     unquoted by the Web browser.
     """
-    cls_str = str if six.PY3 else basestring
+    cls_str = str
     if not isinstance(s, cls_str):
         return s
     res = list(s)
@@ -145,7 +145,7 @@ def unquote(s):
     """
     Undo the effects of quote(). Based heavily on urllib.unquote().
     """
-    cls_str = str if six.PY3 else basestring
+    cls_str = str
     if not isinstance(s, cls_str):
         return s
     mychr = chr
