@@ -172,9 +172,9 @@ class ActionPlugin(BaseAdminPlugin):
     def get_context(self, context):
         if self.actions and self.admin_view.result_count:
             av = self.admin_view
-            selection_note_all = ungettext('%(total_count)s selected' + 
-                                           'All %(total_count)s selected' + 
-                                           str(av.result_count))
+            selection_note_all = ungettext('%(total_count)s selected',
+                                           'All %(total_count)s selected',
+                                           av.result_count)
 
             new_context = {
                 'selection_note': _('0 of %(cnt)s selected') % {'cnt': len(av.result_list)},
