@@ -8,7 +8,7 @@ from django.template.response import TemplateResponse
 import six
 from django.utils.encoding import force_str as force_text
 from django.utils.safestring import mark_safe
-from django.utils.translation import gettext as _, gettext as ungettext
+from django.utils.translation import gettext as _, ngettext as ungettext
 from django.utils.text import capfirst
 
 from django.contrib.admin.utils import get_deleted_objects
