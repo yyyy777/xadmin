@@ -1,26 +1,34 @@
 from __future__ import absolute_import
-from django.db import models
-from django.core.exceptions import ImproperlyConfigured
-from django.utils.encoding import smart_str as smart_text
-from django.utils.translation import gettext_lazy as _
-from django.utils import timezone
-from django.template.loader import get_template
-from django.template.context import Context
-import six
-from django.utils.safestring import mark_safe
-from django.utils.html import escape, format_html
-from django.utils.text import Truncator
-from django.core.cache import cache, caches
 
-from xadmin.views.list import EMPTY_CHANGELIST_VALUE
-from xadmin.util import is_related_field, is_related_field2
 import datetime
+
+import six
+from django.core.cache import cache, caches
+from django.core.exceptions import ImproperlyConfigured
+from django.db import models
+from django.template.context import Context
+from django.template.loader import get_template
+from django.utils import timezone
+from django.utils.encoding import smart_str as smart_text
+from django.utils.html import escape, format_html
+from django.utils.safestring import mark_safe
+from django.utils.text import Truncator
+from django.utils.translation import gettext_lazy as _
+
+from xadmin.util import is_related_field, is_related_field2
+from xadmin.views.list import EMPTY_CHANGELIST_VALUE
 
 FILTER_PREFIX = '_p_'
 SEARCH_VAR = '_q_'
 
-from .util import (get_model_from_relation,
-                   reverse_field_path, get_limit_choices_to_from_path, prepare_lookup_value)
+from .util import (
+    get_limit_choices_to_from_path,
+    get_model_from_relation,
+    prepare_lookup_value,
+    reverse_field_path,
+)
+from .util import (get_limit_choices_to_from_path, get_model_from_relation,
+                   prepare_lookup_value, reverse_field_path)
 
 
 class BaseFilter(object):
@@ -202,7 +210,7 @@ class ChoicesFieldListFilter(ListFieldFilter):
 
     def choices(self):
         yield {
-            'selected': self.lookup_exact_val is '',
+            'selected': self.lookup_exact_val == '',
             'query_string': self.query_string({}, [self.lookup_exact_name]),
             'display': _('All')
         }
@@ -548,7 +556,7 @@ class AllValuesFieldListFilter(ListFieldFilter):
 
     def choices(self):
         yield {
-            'selected': (self.lookup_exact_val is '' and self.lookup_isnull_val is ''),
+            'selected': (self.lookup_exact_val == '' and self.lookup_isnull_val == ''),
             'query_string': self.query_string({}, [self.lookup_exact_name, self.lookup_isnull_name]),
             'display': _('All'),
         }
